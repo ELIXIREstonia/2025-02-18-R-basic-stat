@@ -1,33 +1,33 @@
-# 2024-06-18-R-basic
+# 2025-02-18-R-basic-stat
 
-ELIXIR-EE training course on R and Rstudio basic usage. Target to learners who have no or very little prior experience with R and Rstudio.
+ELIXIR-EE training course on introduction to statistics in R. This course is designed to provide researchers in biomedical sciences with experience in the application of basic statistical analysis techniques to a variety of biological problems. The course extensively covers materials from https://sib-swiss.github.io/Introduction-to-statistics-with-R/
 
-The main document of the lecture is the [2024-06-18-R-basic.Rmd](2024-06-18-R-basic.Rmd) R markdown document. R markdown allows code (examples) and explanation / documentation to be in the same document in a nicely formatted, well structured manner.
+
+
+This course is a mixture of lectures and practicals. The main files for practising are the [2025-02-18-R-basic-stat.Rmd](2025-02-18-R-basic-stat.Rmd) and [2025-02-25-R-basic-stat.Rmd](2025-02-25-R-basic-stat.Rmd) R markdown documents. R markdown allows code (examples) and explanation / documentation to be in the same document in a nicely formatted, well structured manner.
 
 Data files needed in the code are located in the `data` folder.
 
-Learning outcomes for the training:
+The lecture slides are found in <TODO!: add Zenodo links here after slides have been modified>
 
-1.  **Understanding Basic R Data Structures**:
+Learning outcomes:
 
-    -   Learners will be able to distinguish between primary R data structures, namely vectors, matrices, data frames, and lists.
+1.  **Have experience applying basic statistics techniques in R**:
 
-    -   They will be proficient in initializing and inspecting these structures using basic R functions.
+    -   Learners will be able use R to run appropriate statistical tests and visualize these results.
 
-2.  **Data Transformation with Tidyverse**:
+2.  **Summarize data with numerical and graphical summaries**:
 
-    -   Participants will gain proficiency in using the **`%>%`** pipe operator to chain together functions for data manipulation.
+    -   Participants will gain proficiency in ggplot library and learn to summarize data.
 
-    -   They will understand and be able to apply essential tidyverse functions like **`mutate`**, **`group_by`**, **`summarize`**, and **`arrange`** to transform and analyze datasets.
+3.  **Understanding basic concepts in statistics: one/two/multiple-sample tests, hypothesis testing, multiple testing correction etc.**:
 
-3.  **Data Categorization and Conditional Operations**:
+    -   Trainees will be equipped with the knowledge about which statistical test to apply and when, how to do hypothesis testing in biological context and when to apply multiple testing.
 
-    -   Trainees will be equipped to generate new variables in a dataset based on conditional logic, such as categorizing numerical data into distinct groups.
+4.  **Learn about the relations in the data using correlation, regression and PCA**:
 
-4.  **Application of Data Manipulation Techniques**:
-
-    -   By the end of the session, participants will have hands-on experience in applying the introduced concepts to real-world datasets, such as the Kaggle "Memory Test on Drugged Islanders Data" dataset. They'll be able to group data, compute summary statistics, and create new columns based on specific criteria.
+    -   Learners will learn about relations between features in data and how to find gold in highly dimensional data. 
 
 ### Next step
 
-Take a look at our follow up course on how to create compelling visualisations using R and ggplot2: [https://github.com/ELIXIREstonia/2024-06-18-R-visualisation](https://github.com/ELIXIREstonia/2024-06-18-R-visualisation)
+If you are more interested in creating compelling visualisations using R and ggplot2, check out the previous training: [https://github.com/ELIXIREstonia/2024-06-18-R-visualisation](https://github.com/ELIXIREstonia/2024-06-18-R-visualisation)
