@@ -22,11 +22,16 @@ library(ggplot2)
 library(ggpubr)
 library(rstatix)
 library(pheatmap)
+# install if not already installed
+if(!require(pwr)){
+    install.packages("pwr")
+    library(pwr)
+}
 ```
 
 ### Day 1 
 
-**Warm-up: Exploratory data analysis on the `hellung` dataset (from the ISwR library)**
+#### **Warm-up: Exploratory data analysis on the `hellung` dataset (from the ISwR library)**
 
 ```{r}
 # what does this dataset contain?
@@ -38,40 +43,71 @@ library(pheatmap)
 data(hellung)
 ```
 
-Task 1: Provide minimum two ways to find the mean of glucose.
+**Task 1**: Provide minimum two ways to find the mean of glucose.
 
 ```{r}
 
 ```
 
-Task 2: Find the average diameter of cells which were grown with glucose.
+**Task 2**: Find the average diameter of cells which were grown with glucose.
 
 ```{r}
 
 ```
 
-Task 3: Show the distributions of all the features of the data set in separate plots and combine them in one frame. Take a look at <https://www.data-to-viz.com/> for plotting inspiration/guidance.
+**Task 3**: Show the distributions of all the features of the data set in separate plots and combine them in one frame. Take a look at <https://www.data-to-viz.com/> for plotting inspiration/guidance.
 
 ```{r}
 
 ```
 
-Task 4: Find and visualize if the addition of glucose affects the cell diameter and if cell concentration affects the cell diameters.
+**Task 4**: Find and visualize if the addition of glucose affects the cell diameter and if cell concentration affects the cell diameters.
 
 ```{r}
 # correlation function provided here
 #cor(hellung$conc, hellung$diameter)
 ```
 
-**Hypothesis testing**
+#### Example of a power analysis for a two-sample t-test
 
-Theory: \<TODO! add link to Zenodo slides here\>
+```{r}
+# Step 1: Define Parameters
+effect_size <- 0.5  # Medium effect size (Cohen’s d)
+population_variance <- 15^2  # Variance (assuming SD = 15)
+
+# Step 2: Lehr's Rule Calculation 
+sample_size_one_sided <- (8 * population_variance) / (effect_size^2)
+sample_size_two_sided <- (16 * population_variance) / (effect_size^2)
+
+cat("Estimated sample size (one-sided test):", ceiling(sample_size_one_sided), "\n")
+cat("Estimated sample size (two-sided test):", ceiling(sample_size_two_sided), "\n")
+
+# Step 3: Power Analysis using pwr.t.test()
+power_analysis <- pwr.t.test(d = effect_size, power = 0.8, sig.level = 0.05, type = "two.sample")
+cat("Power analysis suggested sample size per group:", ceiling(power_analysis$n), "\n")
+
+# Step 4: Simulate Data and Perform t-test
+set.seed(123)  # For reproducibility
+n <- ceiling(power_analysis$n)  # Use the computed sample size
+
+group1 <- rnorm(n, mean = 100, sd = sqrt(population_variance))  # Simulated data for group 1
+group2 <- rnorm(n, mean = 100 + (effect_size * sqrt(population_variance)), sd = sqrt(population_variance))  # Group 2 with effect size applied
+
+# Perform a statistical t-test
+t_test_result <- t.test(group1, group2, var.equal = TRUE)
+print(t_test_result)
+
+```
+
+#### **Hypothesis testing**
+
+Theory: [10.5281/zenodo.14883678](https://github.com/ELIXIREstonia/2025-02-18-R-basic-stat/blob/main/10.5281/zenodo.14883678)
 
 Let's now do some hypothesis testing in R!
 
-**One-sample t-test (intake dataset)**
+##### **One-sample t-test (intake dataset)**
 
-i.e. "I have data about A, is there a significant difference in feature X based on the mean (or other metric) of the population of A?"
+i.e. "I have data about A, is there a significant difference in feature X based on the mean of the population of A?"
 
 **Task**: Given the `intake` data set, you wish to test whether there is a significant deviation between the women’s (pre) energy intake and a recommended value of 7725 kJ.
 
@@ -134,7 +170,7 @@ The default `t.test()` assumes that you want a 2-sided test. Use help to find ou
 
 ```
 
-**Paired t-test (intake dataset continued)**
+##### **Paired t-test (intake dataset continued)**
 
 i.e. "We have data about X at two different time points"
 
@@ -156,7 +192,7 @@ Let's do the paired t-test to check for significant differences between the pre 
 
 ```
 
-**Two-sample t-test (energy dataset)**
+##### **Two-sample t-test (energy dataset)**
 
 i.e. "I have data about two subgroups from A: AA and AB, is there a significant difference between feature X in these subgroups?"
 
@@ -188,7 +224,7 @@ Now let's test if there is a significant difference between the lean and obese g
 
 ```
 
-**Multiple testing correction - when and how to use this?**
+#### **Multiple testing correction - when and how to use this?**
 
 We have created a list of data sets. Each data set has 30 values generated from normal distributions of different means (1, 0, -1, 0.5).
 
@@ -240,9 +276,9 @@ p_values_dataframe <-
 p_values_dataframe
 ```
 
-**Non-parametric test for two samples (air quality data set)**
+#### **Non-parametric test for two samples (air quality data set)**
 
-Theory: \<TODO: add link to slides here\>
+Theory: [10.5281/zenodo.14883678](https://github.com/ELIXIREstonia/2025-02-18-R-basic-stat/blob/main/10.5281/zenodo.14883678)
 
 **Task**: Perform the Mann-Whitney U Test to check for the significant difference in ozone levels in May and July from the `airquality` data set.
 
@@ -285,10 +321,12 @@ Attempt a log transformation (hint: `log()`) to fix the skewed data and check fo
 
 ```
 
-Perform the Mann-Whitney U Test (hint: `wilcox_test()`) to check for the difference in ozone levels in May and July.
+Perform the Mann-Whitney U Test (hint: `wilcox_test()`) to check for the difference in ozone levels in May and July. The t-test in the code block is for reference.
 
 ```{r}
 
+########## t-test for reference ########## 
+t.test(Ozone ~ Month, data = data, exact = FALSE)
 ```
 
-### This marks the end of Day 1. Congrats! See you next week. 
+**This marks the end of Day 1. Congrats! See you next week.**
