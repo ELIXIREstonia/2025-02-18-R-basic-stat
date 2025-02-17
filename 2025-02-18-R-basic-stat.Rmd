@@ -70,6 +70,8 @@ data(hellung)
 
 #### Example of a power analysis for a two-sample t-test
 
+Theory: <https://zenodo.org/records/14883678/files/Introduction_to_hypothesis_testing_25.pdf?download=1>
+
 ```{r}
 # Step 1: Define Parameters
 effect_size <- 0.5  # Medium effect size (Cohen’s d)
