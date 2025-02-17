@@ -8,7 +8,8 @@ This course is a mixture of lectures and practicals. The main files for practisi
 
 Data files needed in the code are located in the `data` folder.
 
-The lecture slides are found in <TODO!: add Zenodo links here after slides have been modified>
+The lecture slides are found in [10.5281/zenodo.14883678](10.5281/zenodo.14883678)
+
 
 Learning outcomes:
 
