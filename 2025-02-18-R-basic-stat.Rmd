@@ -101,7 +101,7 @@ print(t_test_result)
 
 #### **Hypothesis testing**
 
-Theory: [10.5281/zenodo.14883678](https://github.com/ELIXIREstonia/2025-02-18-R-basic-stat/blob/main/10.5281/zenodo.14883678)
+Theory: <https://zenodo.org/records/14883678/files/Introduction_to_hypothesis_testing_25.pdf?download=1>
 
 Let's now do some hypothesis testing in R!
 
@@ -278,7 +278,7 @@ p_values_dataframe
 
 #### **Non-parametric test for two samples (air quality data set)**
 
-Theory: [10.5281/zenodo.14883678](https://github.com/ELIXIREstonia/2025-02-18-R-basic-stat/blob/main/10.5281/zenodo.14883678)
+Theory: <https://zenodo.org/records/14883678/files/Parametric_and_non_parametric_tests_25.pdf?download=1>
 
 **Task**: Perform the Mann-Whitney U Test to check for the significant difference in ozone levels in May and July from the `airquality` data set.
 
