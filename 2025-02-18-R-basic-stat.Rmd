@@ -72,6 +72,8 @@ data(hellung)
 
 Theory: <https://zenodo.org/records/14883678/files/Introduction_to_hypothesis_testing_25.pdf?download=1>
 
+Here we have an example of using Lehr's rule to determine the correct sample size for a two-sample t-test.
+
 ```{r}
 # Step 1: Define Parameters
 effect_size <- 0.5  # Medium effect size (Cohen’s d)
@@ -254,14 +256,36 @@ p_values <- sapply(groups, function(group) t.test(group, mu = 0)$p.value)
 print(p_values)
 ```
 
-As we are comparing multiple groups against the same hypothesis, multiple testing correction should be undertaken.
+As we are comparing multiple groups against the same hypothesis, multiple testing correction should be undertaken - please adjust p-values using Bonferroni and Holm correction.
 
 ```{r}
-# TODO: using `p.adjust()` adjust the double "p_values" using different methods
+# TODO: using `p.adjust()` adjust the double "p_values" using Bonferroni and Holm
 ##########################################################
 # add your code here
 
 ##########################################################
+
+# this section will create the correct siginificance values for the Holm correction
+num_tests <- length(p_values)
+p_order <- order(p_values)
+p_sorted <- p_values[p_order]
+
+# Compute Holm thresholds
+holm_thresholds <- 0.05 / (num_tests:1)  # 0.05 / (n, n-1, ..., 1)
+
+# Determine significance step-wise
+holm_significant_sorted <- rep("No", num_tests)
+for (i in 1:num_tests) {
+  if (p_sorted[i] < holm_thresholds[i]) {
+    holm_significant_sorted[i] <- "Yes"
+  } else {
+    break  # Once a non-significant value is found, stop marking further ones
+  }
+}
+
+# Reorder results back to original order
+holm_significant <- holm_significant_sorted[order(p_order)]
+
 
 # Show results
 p_values_dataframe <-
@@ -270,9 +294,9 @@ p_values_dataframe <-
     Raw_p = p_values,
     Raw_significance = ifelse(p_values < 0.05, "Yes", "No"),
     Bonferroni_p = p_adjusted_bonferroni,
-    Bonferroni_significance = ifelse(p_adjusted_bonferroni < 0.05, "Yes", "No"),
+    Bonferroni_significance = ifelse(p_adjusted_bonferroni < (0.05 / no_of_tests), "Yes", "No"),
     Holm_p = p_adjusted_holm,
-    Holm_significance = ifelse(p_adjusted_holm < 0.05, "Yes", "No")
+    Holm_significance = holm_significant
   )
 
 p_values_dataframe
