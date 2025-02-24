@@ -371,27 +371,6 @@ $$
 ```{r}
 # Load the iris dataset
 data(iris)
-
-# Split Petal Length into 3 categories using equal frequency approach
-# Using the cut function with 3 intervals: "Short", "Medium", and "Long"
-iris$PetalLengthCategory <- cut(iris$Petal.Length, 
-                                breaks = c(-Inf, 2.5, 4.5, Inf),  # Adjusted breakpoints
-                                labels = c("Short", "Medium", "Long"))
-
-# Create a contingency table: Species vs Petal Length Category
-table_iris <- table(iris$Species, iris$PetalLengthCategory)
-
-# View the contingency table
-print("Contingency Table:")
-print(table_iris)
-
-# Perform Chi-Square Test of Independence
-chi_result <- chisq.test(table_iris)
-
-# Output the test results
-print("Chi-Square Test Result:")
-print(chi_result)
-
 ```
 
 Categorize petal length to meet the assumptions of the Chi-Square Test.
