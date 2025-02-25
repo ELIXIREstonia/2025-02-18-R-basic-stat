@@ -109,7 +109,7 @@ $$
 
 where $s$ is the sample standard deviation, $n$ is the sample size, and $\bar{x}$ is the sample mean.
 
-If any of the ANOVA assumptions (independence observations, equal variance, normal distribution) are not met: non-parametric alternative is the Kruskal-Wallis (`kruskal_test` can be used for this)
+If any of the ANOVA assumptions (independent observations, equal variance, normal distribution) are not met: non-parametric alternative is the Kruskal-Wallis (`kruskal_test` can be used for this)
 
 ```{r}
 #kruskal_test(PlantGrowth, weight ~ group)
@@ -163,7 +163,7 @@ Let's find the regression line for this relationship.
 
 ```
 
-Now standardize glucose and find the linear model again.
+Now standardize glucose and find the linear model again (check out `scale` for this)
 
 **What is standardization?**
 
