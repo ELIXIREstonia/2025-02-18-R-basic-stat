@@ -24,9 +24,13 @@ Learning outcomes:
 
     -   Trainees will be equipped with the knowledge about which statistical test to apply and when, how to do hypothesis testing in biological context and when to apply multiple testing.
 
-4.  **Learn about the relations in the data using correlation, regression and PCA**:
+4.  **Learn about the relations in the data using correlation, regression**:
 
-    -   Learners will learn about relations between features in data and how to find gold in highly dimensional data. 
+    -   Learners will find out about relations between features in data.
+      
+5.  **Understand how to deal with categorical data in statistics**:
+
+    -   Learners will gain understanding about how to find statistical significant associations in categorical data. 
 
 ### Next step
 
